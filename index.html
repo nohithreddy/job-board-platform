@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobBoard Pro - Find Your Dream Job</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="flex items-center justify-between">
+                <div class="logo">
+                    <h1>JobBoard Pro</h1>
+                </div>
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li><a href="#" data-page="home" class="nav-link active">Home</a></li>
+                        <li><a href="#" data-page="jobs" class="nav-link">Jobs</a></li>
+                        <li><a href="#" data-page="companies" class="nav-link">Companies</a></li>
+                        <li><a href="#" data-page="post-job" class="nav-link">Post Job</a></li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <button class="theme-toggle btn btn--outline btn--sm" id="themeToggle">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                    <button class="btn btn--outline btn--sm" id="loginBtn">Login</button>
+                    <button class="btn btn--primary btn--sm" id="registerBtn">Register</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Home Page -->
+        <div id="homePage" class="page active">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1>Find Your Dream Job Today</h1>
+                        <p>Discover thousands of job opportunities from top companies worldwide</p>
+                        <div class="search-form">
+                            <div class="search-inputs">
+                                <input type="text" placeholder="Job title or keyword" class="form-control" id="searchTitle">
+                                <input type="text" placeholder="Location" class="form-control" id="searchLocation">
+                                <select class="form-control" id="searchCategory">
+                                    <option value="">All Categories</option>
+                                </select>
+                                <button class="btn btn--primary" id="searchBtn">Search Jobs</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stats Section -->
+            <section class="stats">
+                <div class="container">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <h3 id="jobCount">2,847</h3>
+                            <p>Active Jobs</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3 id="companyCount">850</h3>
+                            <p>Companies</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3 id="applicationCount">12,456</h3>
+                            <p>Applications</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3 id="successCount">3,891</h3>
+                            <p>Success Stories</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Featured Jobs -->
+            <section class="featured-jobs">
+                <div class="container">
+                    <h2>Featured Jobs</h2>
+                    <div class="jobs-grid" id="featuredJobsGrid">
+                        <!-- Featured jobs will be populated by JavaScript -->
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn--outline" id="viewAllJobsBtn">View All Jobs</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Jobs Page -->
+        <div id="jobsPage" class="page">
+            <div class="container">
+                <div class="jobs-layout">
+                    <!-- Filters Sidebar -->
+                    <aside class="filters-sidebar">
+                        <div class="filter-section">
+                            <h3>Filters</h3>
+                            <button class="btn btn--outline btn--sm" id="clearFilters">Clear All</button>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <h4>Location</h4>
+                            <select class="form-control" id="locationFilter">
+                                <option value="">All Locations</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <h4>Job Type</h4>
+                            <select class="form-control" id="jobTypeFilter">
+                                <option value="">All Types</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <h4>Experience Level</h4>
+                            <select class="form-control" id="experienceFilter">
+                                <option value="">All Levels</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <h4>Category</h4>
+                            <select class="form-control" id="categoryFilter">
+                                <option value="">All Categories</option>
+                            </select>
+                        </div>
+                    </aside>
+
+                    <!-- Jobs Content -->
+                    <div class="jobs-content">
+                        <div class="jobs-header">
+                            <div class="results-info">
+                                <span id="resultsCount">0 jobs found</span>
+                            </div>
+                            <div class="sort-controls">
+                                <select class="form-control" id="sortBy">
+                                    <option value="newest">Newest First</option>
+                                    <option value="oldest">Oldest First</option>
+                                    <option value="salary-high">Salary: High to Low</option>
+                                    <option value="salary-low">Salary: Low to High</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="jobs-list" id="jobsList">
+                            <!-- Job cards will be populated by JavaScript -->
+                        </div>
+
+                        <div class="pagination" id="pagination">
+                            <!-- Pagination will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Job Details Page -->
+        <div id="jobDetailsPage" class="page">
+            <div class="container">
+                <div class="job-details-layout">
+                    <div class="job-details-main">
+                        <div class="job-header">
+                            <button class="btn btn--outline btn--sm back-btn" id="backToJobs">← Back to Jobs</button>
+                            <div class="job-title-section">
+                                <h1 id="jobTitle"></h1>
+                                <div class="job-meta">
+                                    <span id="jobCompany"></span>
+                                    <span id="jobLocation"></span>
+                                    <span id="jobPosted"></span>
+                                </div>
+                            </div>
+                            <div class="job-actions">
+                                <button class="btn btn--outline" id="saveJobBtn">Save Job</button>
+                                <button class="btn btn--primary" id="applyJobBtn">Apply Now</button>
+                            </div>
+                        </div>
+
+                        <div class="job-content">
+                            <div class="job-section">
+                                <h3>Job Description</h3>
+                                <p id="jobDescription"></p>
+                            </div>
+
+                            <div class="job-section">
+                                <h3>Requirements</h3>
+                                <ul id="jobRequirements"></ul>
+                            </div>
+
+                            <div class="job-section">
+                                <h3>Benefits</h3>
+                                <ul id="jobBenefits"></ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="job-details-sidebar">
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>Company Information</h3>
+                                <div class="company-info">
+                                    <img id="companyLogo" src="" alt="Company Logo" class="company-logo">
+                                    <h4 id="companyName"></h4>
+                                    <p id="companyDescription"></p>
+                                    <div class="company-details">
+                                        <p><strong>Industry:</strong> <span id="companyIndustry"></span></p>
+                                        <p><strong>Size:</strong> <span id="companySize"></span></p>
+                                        <p><strong>Founded:</strong> <span id="companyFounded"></span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>Job Details</h3>
+                                <div class="job-details-info">
+                                    <p><strong>Salary:</strong> <span id="jobSalary"></span></p>
+                                    <p><strong>Type:</strong> <span id="jobType"></span></p>
+                                    <p><strong>Experience:</strong> <span id="jobExperience"></span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Company Dashboard -->
+        <div id="companyDashboard" class="page">
+            <div class="container">
+                <div class="dashboard-header">
+                    <h1>Company Dashboard</h1>
+                    <button class="btn btn--primary" id="postNewJobBtn">Post New Job</button>
+                </div>
+
+                <div class="dashboard-tabs">
+                    <button class="tab-btn active" data-tab="overview">Overview</button>
+                    <button class="tab-btn" data-tab="jobs">My Jobs</button>
+                    <button class="tab-btn" data-tab="applications">Applications</button>
+                    <button class="tab-btn" data-tab="profile">Profile</button>
+                </div>
+
+                <div class="dashboard-content">
+                    <div id="overviewTab" class="tab-content active">
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <h3>5</h3>
+                                <p>Active Jobs</p>
+                            </div>
+                            <div class="stat-card">
+                                <h3>47</h3>
+                                <p>Applications</p>
+                            </div>
+                            <div class="stat-card">
+                                <h3>12</h3>
+                                <p>Interviews</p>
+                            </div>
+                            <div class="stat-card">
+                                <h3>3</h3>
+                                <p>Hires</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="jobsTab" class="tab-content">
+                        <div class="jobs-management">
+                            <h3>Your Posted Jobs</h3>
+                            <div id="companyJobs">
+                                <!-- Company jobs will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="applicationsTab" class="tab-content">
+                        <h3>Recent Applications</h3>
+                        <div class="applications-list">
+                            <p>No applications yet.</p>
+                        </div>
+                    </div>
+
+                    <div id="profileTab" class="tab-content">
+                        <h3>Company Profile</h3>
+                        <form class="company-profile-form">
+                            <div class="form-group">
+                                <label class="form-label">Company Name</label>
+                                <input type="text" class="form-control" value="Your Company">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Description</label>
+                                <textarea class="form-control" rows="4">Enter company description...</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Industry</label>
+                                <input type="text" class="form-control" value="Technology">
+                            </div>
+                            <button type="submit" class="btn btn--primary">Save Changes</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Profile -->
+        <div id="userProfile" class="page">
+            <div class="container">
+                <h1>My Profile</h1>
+                <div class="profile-layout">
+                    <div class="profile-sidebar">
+                        <div class="profile-menu">
+                            <button class="profile-menu-btn active" data-section="info">Personal Info</button>
+                            <button class="profile-menu-btn" data-section="saved">Saved Jobs</button>
+                            <button class="profile-menu-btn" data-section="applications">Applications</button>
+                            <button class="profile-menu-btn" data-section="alerts">Job Alerts</button>
+                        </div>
+                    </div>
+                    <div class="profile-content">
+                        <div id="profileInfo" class="profile-section active">
+                            <h2>Personal Information</h2>
+                            <form class="profile-form">
+                                <div class="form-group">
+                                    <label class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" value="John Doe">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="form-control" value="john@example.com">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Phone</label>
+                                    <input type="tel" class="form-control" value="+1 234 567 8900">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Location</label>
+                                    <input type="text" class="form-control" value="San Francisco, CA">
+                                </div>
+                                <button type="submit" class="btn btn--primary">Update Profile</button>
+                            </form>
+                        </div>
+                        
+                        <div id="savedJobs" class="profile-section">
+                            <h2>Saved Jobs</h2>
+                            <div id="savedJobsList">
+                                <p>No saved jobs yet.</p>
+                            </div>
+                        </div>
+                        
+                        <div id="applications" class="profile-section">
+                            <h2>My Applications</h2>
+                            <div id="applicationsList">
+                                <p>No applications yet.</p>
+                            </div>
+                        </div>
+                        
+                        <div id="jobAlerts" class="profile-section">
+                            <h2>Job Alerts</h2>
+                            <form class="alert-form">
+                                <div class="form-group">
+                                    <label class="form-label">Keywords</label>
+                                    <input type="text" class="form-control" placeholder="e.g. React, JavaScript">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Location</label>
+                                    <input type="text" class="form-control" placeholder="e.g. San Francisco">
+                                </div>
+                                <button type="submit" class="btn btn--primary">Create Alert</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>JobBoard Pro</h3>
+                    <p>Your gateway to dream careers worldwide.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>For Job Seekers</h4>
+                    <ul>
+                        <li><a href="#">Browse Jobs</a></li>
+                        <li><a href="#">Career Advice</a></li>
+                        <li><a href="#">Resume Tips</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>For Companies</h4>
+                    <ul>
+                        <li><a href="#">Post Jobs</a></li>
+                        <li><a href="#">Find Talent</a></li>
+                        <li><a href="#">Pricing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 JobBoard Pro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Login</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form class="modal-form" id="loginForm">
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox"> Remember me
+                    </label>
+                </div>
+                <button type="submit" class="btn btn--primary btn--full-width">Login</button>
+                <p class="modal-switch">Don't have an account? <a href="#" id="switchToRegister">Register</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Register</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form class="modal-form" id="registerForm">
+                <div class="form-group">
+                    <label class="form-label">User Type</label>
+                    <select class="form-control" id="userType" required>
+                        <option value="">Select user type</option>
+                        <option value="jobseeker">Job Seeker</option>
+                        <option value="company">Company</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Full Name / Company Name</label>
+                    <input type="text" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn--primary btn--full-width">Register</button>
+                <p class="modal-switch">Already have an account? <a href="#" id="switchToLogin">Login</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Apply Modal -->
+    <div id="applyModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Apply for Job</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form class="modal-form" id="applyForm">
+                <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Phone</label>
+                    <input type="tel" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Cover Letter</label>
+                    <textarea class="form-control" rows="4" placeholder="Why are you interested in this position?"></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Resume</label>
+                    <input type="file" class="form-control" accept=".pdf,.doc,.docx">
+                    <small>Upload your resume (PDF, DOC, DOCX)</small>
+                </div>
+                <button type="submit" class="btn btn--primary btn--full-width">Submit Application</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Post Job Modal -->
+    <div id="postJobModal" class="modal hidden">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2>Post New Job</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form class="modal-form" id="postJobForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Job Title</label>
+                        <input type="text" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Category</label>
+                        <select class="form-control" required>
+                            <option value="">Select category</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Location</label>
+                        <input type="text" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Job Type</label>
+                        <select class="form-control" required>
+                            <option value="">Select type</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Salary Range</label>
+                        <input type="text" class="form-control" placeholder="e.g. $80,000 - $120,000">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Experience Level</label>
+                        <select class="form-control" required>
+                            <option value="">Select experience</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Job Description</label>
+                    <textarea class="form-control" rows="6" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Requirements</label>
+                    <textarea class="form-control" rows="4" placeholder="List the key requirements (one per line)"></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Benefits</label>
+                    <textarea class="form-control" rows="3" placeholder="List the benefits (one per line)"></textarea>
+                </div>
+                <button type="submit" class="btn btn--primary btn--full-width">Post Job</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

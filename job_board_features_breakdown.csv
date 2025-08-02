@@ -1,0 +1,35 @@
+Role,Time_Allocation,Feature,Category,Priority
+Frontend Developer,4 hours,Homepage with job listings,Core,Required
+Frontend Developer,4 hours,Job details page,Core,Required
+Frontend Developer,4 hours,Company dashboard (mock data ok),Core,Required
+Frontend Developer,4 hours,Form validation (React Hook Form/Zod),Core,Required
+Frontend Developer,4 hours,Dark mode (Tailwind),Core,Required
+Frontend Developer,4 hours,State management (Zustand/Redux),Core,Required
+Frontend Developer,4 hours,Authentication (JWT/NextAuth),Core,Required
+Frontend Developer,4 hours,Clean Code + Git Best Practices,Core,Required
+Frontend Developer,4 hours,Deployed Project (Live Link),Core,Required
+Backend Developer,4 hours,Authentication (JWT/NextAuth),Core,Required
+Backend Developer,4 hours,REST/GraphQL API: Post jobs,Core,Required
+Backend Developer,4 hours,REST/GraphQL API: Fetch listings,Core,Required
+Backend Developer,4 hours,REST/GraphQL API: Apply for jobs,Core,Required
+Backend Developer,4 hours,WebSockets for real-time job updates,Core,Required
+Backend Developer,4 hours,API Rate limiting,Core,Required
+Backend Developer,4 hours,Clean Code + Git Best Practices,Core,Required
+Backend Developer,4 hours,Deployed Project (Live Link),Core,Required
+Fullstack Developer,8 hours,All frontend tasks,Core,Required
+Fullstack Developer,8 hours,All backend tasks,Core,Required
+Fullstack Developer,8 hours,"Role-based access (Admin, Company, Job Seeker)",Core,Required
+Fullstack Developer,8 hours,Resume uploads,Core,Required
+Fullstack Developer,8 hours,Minimal company dashboard,Core,Required
+Fullstack Developer,8 hours,Optimized DB (Prisma/Sequelize),Core,Required
+Fullstack Developer,8 hours,Clean Code + Git Best Practices,Core,Required
+Fullstack Developer,8 hours,Deployed Project (Live Link),Core,Required
+Frontend Developer,Variable,Unit/Integration tests (Jest/Cypress/Vitest),Bonus,Optional
+Backend Developer,Variable,Unit/Integration tests (Jest/Cypress/Vitest),Bonus,Optional
+Fullstack Developer,Variable,Unit/Integration tests (Jest/Cypress/Vitest),Bonus,Optional
+Frontend Developer,Variable,SSR/SSG,Bonus,Optional
+Backend Developer,Variable,SSR/SSG,Bonus,Optional
+Fullstack Developer,Variable,SSR/SSG,Bonus,Optional
+Frontend Developer,Variable,AI job recommendations (OpenAI API),Bonus,Optional
+Backend Developer,Variable,AI job recommendations (OpenAI API),Bonus,Optional
+Fullstack Developer,Variable,AI job recommendations (OpenAI API),Bonus,Optional
